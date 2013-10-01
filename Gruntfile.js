@@ -1,9 +1,9 @@
 module.exports = function(grunt) {
 
   var pkg = grunt.file.readJSON('package.json'), 
-      clientsSrcPath = 'client/js/**/*.js',
-      serverSrcPath = 'server/**/*.js',
-      testSrcPath = 'server/test/**/*.js';
+      clientsSrcPath = 'public/javasclipt/**/*.js',
+      serverSrcPath = 'routes/**/*.js',
+      testSrcPath = 'test/**/*.js';
   
 
   grunt.initConfig({

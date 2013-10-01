@@ -4,7 +4,8 @@
   "description": "sample app to study Backborn and Grunt.",
   "main": "Gruntfile.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
@@ -15,13 +16,17 @@
   ],
   "author": "mid0111",
   "license": "MIT",
+  "dependencies": {
+    "express": "3.3.4",
+    "jade": "*"
+  },
   "devDependencies": {
     "grunt": "~0.4.1",
     "grunt-contrib-jshint": "~0.6.4",
     "grunt-contrib-watch": "~0.5.3",
     "grunt-mocha-test": "~0.7.0",
-    "mocha": "*",
-    "supertest": "*",
-    "expect.js": "*"
+    "expect": "0.0.2",
+    "supertest": "~0.8.0",
+    "mocha": "~1.13.0"
   }
 }
