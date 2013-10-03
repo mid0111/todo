@@ -4,7 +4,7 @@
   "description": "sample app to study Backborn and Grunt.",
   "main": "Gruntfile.js",
   "scripts": {
-    "test": "mocha",
+    "test": "grunt",
     "start": "node app.js"
   },
   "repository": {
@@ -27,6 +27,8 @@
     "grunt-mocha-test": "~0.7.0",
     "expect": "0.0.2",
     "supertest": "~0.8.0",
-    "mocha": "~1.13.0"
+    "mocha": "~1.13.0",
+    "blanket": "~1.1.5",
+    "travis-cov": "~0.2.4"
   }
 }
