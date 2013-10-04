@@ -3,6 +3,10 @@
  * GET users listing.
  */
 
-exports.list = function(req, res){
+exports.index = function(req, res){
   res.send("respond with a resource");
+};
+
+exports.create = function(req, res){
+  res.send(201);
 };
