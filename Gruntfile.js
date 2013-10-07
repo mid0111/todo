@@ -2,7 +2,7 @@ module.exports = function(grunt) {
 
   var pkg = grunt.file.readJSON('package.json'), 
       clientsSrcPath = 'public/javasclipt/**/*.js',
-      serverSrcPath = 'routes/**/*.js',
+      serverSrcPath = ['routes/**/*.js', 'models/**/*.js'],
       testSrcPath = 'test/**/*.js',
       defaultTasks = ['jshint', 'mochaTest'];
   
