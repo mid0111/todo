@@ -37,8 +37,51 @@ describe('/users', function(){
       request(app)
         .post('/users')
         .send('{ name: "pochi", email: "hoge@example.com", password: "credential" }')
-        .expect(400);
+        .set('Content-Type', 'application/text')
+        .expect(400)
+        .end(function(err, res){
+          if (err) throw err;
+        });
     });
 
+    it('登録済みのnameを指定した場合409が返却されること', function(done){
+      request(app)
+        .post('/users')
+        .send({ name: 'pochi', email: 'hoge@example.com', password: 'credential' })
+        .expect(201)
+        .end(function(err, res){
+          if (err) throw err;
+          
+          // 同一nameで登録
+          request(app)
+            .post('/users')
+            .send({ name: 'pochi', email: 'fuga@example.com', password: 'credential' })
+            .expect(409)
+            .end(function(err, res){
+              if (err) throw err;
+              done();
+            });
+        });
+    });
+
+    it('登録済みのemailを指定した場合409が返却されること', function(done){
+      request(app)
+        .post('/users')
+        .send({ name: 'tama', email: 'hoge@example.com', password: 'credential' })
+        .expect(201)
+        .end(function(err, res){
+          if (err) throw err;
+          
+          // 同一emailで登録
+          request(app)
+            .post('/users')
+            .send({ name: 'tamya', email: 'hoge@example.com', password: 'credential' })
+            .expect(409)
+            .end(function(err, res){
+              if (err) throw err;
+              done();
+            });
+        });
+    });
   });
 });

@@ -9,7 +9,8 @@ exports.index = function(req, res){
 
 exports.create = function(req, res){
   if(!req.is('application/json')) {
-      res.send(400, 'Invalid Content-Type is [' + req.get('Content-Type') + '].');
+    res.send(400, 'Invalid Content-Type is [' + req.get('Content-Type') + '].');
+    return;
   }
 
   var user = new User();
@@ -19,9 +20,20 @@ exports.create = function(req, res){
 
   user.save(function (err) {
     if (err) {
-      console.log(err);
-      res.send(400, 'Failed to regist user.');
+      if(iscConflictData) {
+        res.send(409, 'Conflict key.');
+        return;
+      }
+      else {
+        res.send(400, 'Failed to regist user.');
+        return;
+      }
     }
+
     res.send(201, user);
   });
+};
+
+var iscConflictData = function(err) {
+  return ('MongoError' === err.name && err.err.indexOf('E11000') === 0);
 };
