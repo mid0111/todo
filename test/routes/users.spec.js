@@ -83,5 +83,46 @@ describe('/users', function(){
             });
         });
     });
+
+    it('nameを省略した場合400が返却されること', function(){
+      request(app)
+        .post('/users')
+        .send('{ email: "hoge@example.com", password: "credential" }')
+        .expect(400)
+        .end(function(err, res){
+          if (err) throw err;
+        });
+    });
+
+    it('nameに空文字を指定した場合400が返却されること', function(){
+      request(app)
+        .post('/users')
+        .send('{ name: "", email: "hoge@example.com", password: "credential" }')
+        .expect(400)
+        .end(function(err, res){
+          if (err) throw err;
+        });
+    });
+
+    it('emailを省略した場合400が返却されること', function(){
+      request(app)
+        .post('/users')
+        .send('{ name: "hoge", password: "credential" }')
+        .expect(400)
+        .end(function(err, res){
+          if (err) throw err;
+        });
+    });
+
+    it('emailに空文字を指定した場合400が返却されること', function(){
+      request(app)
+        .post('/users')
+        .send('{ name: "hoge", email: "", password: "credential" }')
+        .expect(400)
+        .end(function(err, res){
+          if (err) throw err;
+        });
+    });
+
   });
 });
