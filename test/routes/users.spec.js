@@ -1,8 +1,21 @@
 var request = require('supertest'),
     should = require('should'),
-    app = require('../../app');
+    app = require('../../app'),
+    User = require('../../models/user');
+
+var clearData = function(done) {
+  User.remove(done);
+};
 
 describe('/users', function(){
+  
+  beforeEach(function(done) {
+    clearData(done);
+  });
+
+  afterEach(function(done) {
+    clearData(done);
+  });
 
   describe('POST', function(){
 
