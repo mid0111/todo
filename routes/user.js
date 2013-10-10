@@ -20,7 +20,7 @@ exports.create = function(req, res){
 
   user.save(function (err) {
     if (err) {
-      if(iscConflictData) {
+      if(iscConflictData(err)) {
         res.send(409, 'Conflict key.');
         return;
       }
@@ -35,5 +35,5 @@ exports.create = function(req, res){
 };
 
 var iscConflictData = function(err) {
-  return ('MongoError' === err.name && err.err.indexOf('E11000') === 0);
+  return ('MongoError' == err.name && err.err.indexOf('E11000') === 0);
 };

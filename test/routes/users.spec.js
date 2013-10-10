@@ -19,7 +19,7 @@ describe('/users', function(){
 
   describe('POST', function(){
 
-    it('201が返却されること', function(){
+    it('201が返却されること', function(done){
       request(app)
         .post('/users')
         .send({ name: 'pochi', email: 'hoge@example.com', password: 'credential' })
@@ -30,10 +30,11 @@ describe('/users', function(){
           res.body.email.should.equal('hoge@example.com');
           res.body.password.should.equal('credential');
           res.body._id.length.should.not.be.equal(0);
+          done();
         });
     });
 
-    it('不正なContentTypeを指定した場合400が返却されること', function(){
+    it('不正なContentTypeを指定した場合400が返却されること', function(done){
       request(app)
         .post('/users')
         .send('{ name: "pochi", email: "hoge@example.com", password: "credential" }')
@@ -41,6 +42,7 @@ describe('/users', function(){
         .expect(400)
         .end(function(err, res){
           if (err) throw err;
+          done();
         });
     });
 
@@ -84,43 +86,69 @@ describe('/users', function(){
         });
     });
 
-    it('nameを省略した場合400が返却されること', function(){
+    it('nameを省略した場合400が返却されること', function(done){
       request(app)
         .post('/users')
-        .send('{ email: "hoge@example.com", password: "credential" }')
+        .send({ email: "hoge@example.com", password: "credential" })
         .expect(400)
         .end(function(err, res){
           if (err) throw err;
+          done();
         });
     });
 
-    it('nameに空文字を指定した場合400が返却されること', function(){
+    it('nameに空文字を指定した場合400が返却されること', function(done){
       request(app)
         .post('/users')
-        .send('{ name: "", email: "hoge@example.com", password: "credential" }')
+        .send({ name: "", email: "hoge@example.com", password: "credential" })
         .expect(400)
         .end(function(err, res){
           if (err) throw err;
+          done();
         });
     });
 
-    it('emailを省略した場合400が返却されること', function(){
+    it('nameにnullを指定した場合400が返却されること', function(done){
       request(app)
         .post('/users')
-        .send('{ name: "hoge", password: "credential" }')
+        .send({ name: null, email: 'hoge@example.com', password: 'credential' })
         .expect(400)
         .end(function(err, res){
           if (err) throw err;
+          done();
         });
     });
 
-    it('emailに空文字を指定した場合400が返却されること', function(){
+    it('emailを省略した場合400が返却されること', function(done){
       request(app)
         .post('/users')
-        .send('{ name: "hoge", email: "", password: "credential" }')
+        .send({ name: "hoge", password: "credential" })
         .expect(400)
         .end(function(err, res){
           if (err) throw err;
+          done();
+        });
+    });
+
+    it('emailに空文字を指定した場合400が返却されること', function(done){
+      request(app)
+        .post('/users')
+        .send({ name: "hoge", email: "", password: "credential" })
+        .expect(400)
+        .end(function(err, res){
+          if (err) throw err;
+          done();
+        });
+    });
+
+    it('emailにnullを指定した場合400が返却されること', function(done){
+      request(app)
+        .post('/users')
+        .send({ name: 'hoge', email: null, password: 'credential' })
+        .expect(400)
+        .end(function(err, res){
+          if (err) throw err;
+          done();
         });
     });
 
