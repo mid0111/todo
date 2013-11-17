@@ -3,10 +3,6 @@
  */
 var User = require('../models/user');
 
-exports.index = function(req, res){
-  res.render('users', {title : 'hellohello!!'});
-};
-
 exports.create = function(req, res){
   var user = new User();
   user.name = req.param('name');
