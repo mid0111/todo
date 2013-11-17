@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  h1 Sign up
+  
+  div.sign_up_form
+    form(name="sign_up", action="/users", method="post")
+      p name: 
+      input(type="text", name="name")
+      p email: 
+      input(type="text", name="email")
+      p password: 
+      input(type="password", name="password")
+      p 
+      input(type="submit", value="sign up")  
