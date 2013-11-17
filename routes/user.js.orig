@@ -8,6 +8,14 @@ exports.index = function(req, res){
 };
 
 exports.create = function(req, res){
+<<<<<<< HEAD
+=======
+  if(!req.is('application/json')) {
+    res.send(400, 'Invalid Content-Type is [' + req.get('Content-Type') + '].');
+    return;
+  }
+
+>>>>>>> 024c27a568f521e04d2388ab09d806edc59cb4c7
   var user = new User();
   user.name = req.param('name');
   user.email = req.param('email');
