@@ -1,0 +1,22 @@
+{
+  "name": "todo",
+  "version": "0.0.1",
+  "homepage": "https://github.com/mid0111/todo",
+  "authors": [
+    "mid0111 <m.tajima0111@gmail.com>"
+  ],
+  "description": "sample app to study Backborn and Grunt.",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "public/components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "underscore": "~1.5.2",
+    "backbone": "~1.1.0",
+    "requirejs": "~2.1.9"
+  }
+}
