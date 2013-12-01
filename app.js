@@ -5,7 +5,9 @@
 
 var express = require('express')
   , resource = require('express-resource')
+  , home = require('./routes/home')
   , user = require('./routes/user')
+  , todo = require('./routes/todo')
   , http = require('http')
   , path = require('path')
   , mongoose = require('mongoose');
@@ -33,7 +35,9 @@ if ('development' == app.get('env')) {
 }
 
 // routing
+app.resource('', home);
 app.resource('users', user);
+app.resource('todos', todo);
 
 // db setting
 mongoose.connect('mongodb://' + app.get('mongo:host') + '/' + app.get('mongo:db'));
