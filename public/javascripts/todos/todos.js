@@ -65,7 +65,9 @@ define(function(require) {
 
     keyPress: function(e) {
       if(e.keyCode === 13) {
-        Todos.create({title: this.$('#new-todo').val()});
+        var input = this.$('#new-todo');
+        Todos.create({title: input.val()});
+        input.val('');
       }
     }
   });
