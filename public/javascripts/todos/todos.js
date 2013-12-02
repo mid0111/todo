@@ -44,6 +44,10 @@ define(function(require) {
   var AppView = Backbone.View.extend({
     el: $('#app'),
 
+    events: {
+      'keypress #new-todo': 'keyPress'
+    },
+
     initialize: function() {
       Todos.bind('add', this.add, this);
       Todos.bind('reset', this.addAll, this);
@@ -57,6 +61,12 @@ define(function(require) {
     
     addAll: function() {
       Todo.each(this.add);
+    },
+
+    keyPress: function(e) {
+      if(e.keyCode === 13) {
+        Todos.create({title: this.$('#new-todo').val()});
+      }
     }
   });
 
