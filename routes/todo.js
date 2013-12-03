@@ -27,3 +27,15 @@ exports.index = function(req, res) {
   });
 };
 
+exports.destroy = function(req, res) {
+  var id = req.params.todo;
+
+  Todo.remove({_id: id}, function(err) {
+    if(err) {
+      console.log('err!!' + err);
+      res.send(500, err);
+    }
+  });
+
+  res.send(204);
+};

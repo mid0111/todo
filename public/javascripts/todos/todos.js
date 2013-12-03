@@ -7,7 +7,9 @@ define(function(require) {
   var Todo = Backbone.Model.extend({
     defaults: {
       title: ''
-    }
+    },
+
+    idAttribute: '_id'
   });
 
   // Collection
@@ -24,6 +26,10 @@ define(function(require) {
 
     className: 'todo-item',
 
+    events: {
+      'click button.delete': 'clear'
+    },
+
     initialize: function() {
       this.model.bind('change', this.render, this);
       this.model.bind('destroy', this.remove, this);
@@ -32,6 +38,7 @@ define(function(require) {
     render: function() {
       $(this.el).html(
         $('<label class="title">').text(this.model.get('title'))
+          .append('<button class="delete">Delte</button>')
       );
       return this;
     },
