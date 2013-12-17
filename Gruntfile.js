@@ -1,9 +1,9 @@
 module.exports = function(grunt) {
 
   var pkg = grunt.file.readJSON('package.json'), 
-      clientsSrcPath = 'public/javasclipt/**/*.js',
-      serverSrcPath = ['routes/**/*.js', 'models/**/*.js'],
-      testSrcPath = 'test/**/*.js',
+      clientsSrcPath = 'client/public/javasclipt/**/*.js',
+      serverSrcPath = ['server/routes/**/*.js', 'server/models/**/*.js'],
+      testSrcPath = 'server/test/**/*.js',
       defaultTasks = ['jshint', 'mochaTest'];
   
   grunt.initConfig({
@@ -33,19 +33,19 @@ module.exports = function(grunt) {
       },
       dev: {
         options: {
-          script: 'app.js'
+          script: 'server/app.js'
         }
       },
       prod: {
         options: {
-          script: 'app.js',
+          script: 'server/app.js',
           node_env: 'production'
         }
       }
     },
     watch: {
       express: {
-        files:  [ '**/**/*.js' ],
+        files:  [ '**/*.js' ],
         tasks:  [ 'express:dev' ],
         options: {
           nospawn: true
