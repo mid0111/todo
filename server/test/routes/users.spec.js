@@ -1,5 +1,5 @@
 var request = require('supertest'),
-    should = require('should'),
+    should = require('chai').should(),
     app = require('../../app'),
     User = require('../../models/user');
 
