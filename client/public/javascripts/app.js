@@ -17,13 +17,13 @@ requirejs.config({
     'jquery':        'jquery/jquery',
     'underscore':    'underscore/underscore',
     'backbone':      'backbone/backbone',
-    'app': '../javascripts/todos'
+    'app': '../javascripts'
   }
 });
 
 // Start the main app logic.
 requirejs([
-  'app/todos',
+  'app/main',
   'underscore', 
   'jquery', 
   'backbone'], 
