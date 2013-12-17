@@ -39,7 +39,7 @@ requirejs([
 ], function(require, mocha, chai, chaiJquery) {
 
   // setup mocha
-  mocha.expect = chai.expect;
+  expect = chai.expect;
   chai.use(chaiJquery);
   mocha.setup('bdd');
 
@@ -49,9 +49,10 @@ requirejs([
     runner = mochaPhantomJS;
   }
 
-  require([
-    'app/main'
-  ], function(require) {
+  var specFiles = [
+  ];
+
+  require(specFiles, function(require) {
     runner.run();
   });
 
