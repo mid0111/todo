@@ -4,12 +4,15 @@ module.exports = function(grunt) {
       clientsSrcPath = 'client/public/javasclipt/**/*.js',
       serverSrcPath = ['server/routes/**/*.js', 'server/models/**/*.js'],
       testSrcPath = 'server/test/**/*.js',
-      defaultTasks = ['jshint', 'mochaTest'];
+      defaultTasks = ['jshint', 'mochaTest', 'mocha_phantomjs'];
   
   grunt.initConfig({
 
     jshint: {
       all: ['Gruntfile.js', clientsSrcPath, serverSrcPath, testSrcPath]
+    },
+    mocha_phantomjs: {
+      all: ['client/test/**/*.html']
     },
     mochaTest: {
       test: {

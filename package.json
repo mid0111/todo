@@ -33,6 +33,7 @@
     "travis-cov": "~0.2.4",
     "grunt-express-server": "~0.4.4",
     "chai": "~1.8.1",
-    "chai-jquery": "~1.1.2"
+    "chai-jquery": "~1.1.2",
+    "grunt-mocha-phantomjs": "~0.3.2"
   }
 }

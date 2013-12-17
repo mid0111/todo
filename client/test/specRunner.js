@@ -45,6 +45,9 @@ requirejs([
 
   // switch runner
   var runner = mocha;
+  if(window.mochaPhantomJS) {
+    runner = mochaPhantomJS;
+  }
 
   require([
     'app/main'
