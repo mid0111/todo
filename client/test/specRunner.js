@@ -27,7 +27,7 @@ requirejs.config({
     'jquery':       'jquery/jquery',
     'underscore':   'underscore/underscore',
     'backbone':     'backbone/backbone',
-    'app':          '../javascripts/todos'
+    'app':          '../javascripts'
   }
 });
 
@@ -47,7 +47,7 @@ requirejs([
   var runner = mocha;
 
   require([
-    'app/todos'
+    'app/main'
   ], function(require) {
     runner.run();
   });
