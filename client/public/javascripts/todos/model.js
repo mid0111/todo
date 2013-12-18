@@ -6,7 +6,9 @@ define(function(require) {
   // Model
   return Backbone.Model.extend({
     defaults: {
-      title: ''
+      state: false,
+      title: 'タイトルを入力してください',
+      createdAt: new Date()
     },
 
     idAttribute: '_id'

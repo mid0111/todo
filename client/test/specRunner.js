@@ -50,6 +50,7 @@ requirejs([
   }
 
   var specFiles = [
+    '../../test/spec/model.spec'
   ];
 
   require(specFiles, function(require) {

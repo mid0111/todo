@@ -1,7 +1,6 @@
 module.exports = function(grunt) {
 
-  var pkg = grunt.file.readJSON('package.json'), 
-      clientsSrcPath = 'client/public/javasclipt/**/*.js',
+  var clientsSrcPath = 'client/public/javasclipt/**/*.js',
       serverSrcPath = ['server/routes/**/*.js', 'server/models/**/*.js'],
       testSrcPath = 'server/test/**/*.js',
       defaultTasks = ['jshint', 'mochaTest', 'mocha_phantomjs'];
@@ -61,7 +60,8 @@ module.exports = function(grunt) {
     }
   });
 
-  var taskName;
+  var pkg = grunt.file.readJSON('package.json'), 
+      taskName;
   for(taskName in pkg.devDependencies) {
     if(taskName.substring(0, 6) == 'grunt-') {
       grunt.loadNpmTasks(taskName);
