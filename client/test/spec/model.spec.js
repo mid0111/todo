@@ -1,7 +1,4 @@
 define(function(require) {
-  var $ = require('jquery');
-  var _ = require('underscore');
-  var Backbone = require('backbone');
   var Todo = require('app/todos/model');
 
   describe('Todo Model', function() {
