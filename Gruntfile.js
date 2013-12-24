@@ -2,13 +2,14 @@ module.exports = function(grunt) {
 
   var clientsSrcPath = 'client/public/javasclipt/**/*.js',
       serverSrcPath = ['server/routes/**/*.js', 'server/models/**/*.js'],
-      testSrcPath = 'server/test/**/*.js',
+      serverSpec = 'server/test/**/*.js',
+      clientSpec = 'client/test/**/*.js',
       defaultTasks = ['jshint', 'mochaTest', 'mocha_phantomjs'];
   
   grunt.initConfig({
 
     jshint: {
-      all: ['Gruntfile.js', clientsSrcPath, serverSrcPath, testSrcPath]
+      all: ['Gruntfile.js', clientsSrcPath, serverSrcPath]
     },
     mocha_phantomjs: {
       all: ['client/test/**/*.html']
@@ -19,7 +20,7 @@ module.exports = function(grunt) {
           reporter: 'spec',
           require: 'coverage/blanket'
         },
-        src: [testSrcPath]
+        src: [serverSpec]
       },
       coverage: {
         options: {
@@ -27,7 +28,7 @@ module.exports = function(grunt) {
           quiet: true,
           captureFile: 'coverage.html'
         },
-        src: [testSrcPath]
+        src: [serverSpec]
       }
     },
     express: {
@@ -47,15 +48,15 @@ module.exports = function(grunt) {
     },
     watch: {
       express: {
-        files:  [ '**/*.js' ],
-        tasks:  [ 'express:dev' ],
+        files:  [clientsSrcPath, serverSrcPath],
+        tasks:  ['express:dev'],
         options: {
           nospawn: true
         }
       },
       src: {
-        files: ['Gruntfile.js', clientsSrcPath, serverSrcPath, testSrcPath],
-        tasks: [ 'default' ]
+        files: ['Gruntfile.js', clientsSrcPath, serverSrcPath, serverSpec, clientSpec],
+        tasks: ['default']
       }
     }
   });
