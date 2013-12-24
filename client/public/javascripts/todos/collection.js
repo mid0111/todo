@@ -10,6 +10,7 @@ define(function(require) {
 
     url: '/todos'
   });
-  return new TodoCollection;
+  // return new TodoCollection;
+  return TodoCollection;
 
 });

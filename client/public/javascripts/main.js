@@ -3,7 +3,7 @@ define(function(require) {
   var _ = require('underscore');
   var Backbone = require('backbone');
   var Todo = require('app/todos/model');
-  var Todos = require('app/todos/collection');
+  var Todos = new require('app/todos/collection');
   var TodoView = require('app/todos/view');
 
   var AppView = Backbone.View.extend({
