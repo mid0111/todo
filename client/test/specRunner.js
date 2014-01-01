@@ -27,6 +27,7 @@ requirejs.config({
     'jquery':       'jquery/jquery',
     'underscore':   'underscore/underscore',
     'backbone':     'backbone/backbone',
+    'text':         'requirejs-text/text',
     'app':          '../javascripts'
   }
 });

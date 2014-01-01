@@ -11,4 +11,6 @@ block content
     div(id="todos")
       ul(id="list")
 
+  script.
+    window.todos=!{JSON.stringify(todos)}
   script(data-main="javascripts/app.js", src="components/requirejs/require.js")

@@ -2,7 +2,6 @@ define(function(require) {
   var $ = require('jquery');
   var _ = require('underscore');
   var Backbone = require('backbone');
-  var Todo = require('app/todos/model');
   var Todos = require('app/todos/collection');
   var TodoView = require('app/todos/view');
 
@@ -17,7 +16,7 @@ define(function(require) {
       this.collection = new Todos();
       this.collection.bind('add', this.renderOne, this);
       this.collection.bind('reset', this.render, this);
-      this.collection.fetch();
+      this.collection.reset(window.todos);
     },
 
     renderOne: function(todo) {
@@ -26,7 +25,7 @@ define(function(require) {
     },
     
     render: function() {
-      Todo.each(this.renderOne);
+      this.collection.each(this.renderOne, this);
       return this;
     },
 
