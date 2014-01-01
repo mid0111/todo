@@ -3,7 +3,7 @@ define(function(require) {
   var _ = require('underscore');
   var Backbone = require('backbone');
   var Todo = require('app/todos/model');
-  var Todos = new require('app/todos/collection');
+  var Todos = require('app/todos/collection');
   var TodoView = require('app/todos/view');
 
   var AppView = Backbone.View.extend({
@@ -14,24 +14,26 @@ define(function(require) {
     },
 
     initialize: function() {
-      Todos.bind('add', this.add, this);
-      Todos.bind('reset', this.addAll, this);
-      Todos.fetch();
+      this.collection = new Todos();
+      this.collection.bind('add', this.renderOne, this);
+      this.collection.bind('reset', this.render, this);
+      this.collection.fetch();
     },
 
-    add: function(todo) {
+    renderOne: function(todo) {
       var view = new TodoView({model: todo});
       this.$('#list').append(view.render().el);
     },
     
-    addAll: function() {
-      Todo.each(this.add);
+    render: function() {
+      Todo.each(this.renderOne);
+      return this;
     },
 
     keyPress: function(e) {
       if(e.keyCode === 13) {
         var input = this.$('#new-todo');
-        Todos.create({title: input.val()});
+        this.collection.create({title: input.val()});
         input.val('');
       }
     }

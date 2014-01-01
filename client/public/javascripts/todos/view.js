@@ -21,7 +21,7 @@ define(function(require) {
     render: function() {
       $(this.el).html(
         $('<label class="title">').text(this.model.get('title'))
-          .append('<button class="delete">Delte</button>')
+          .append('<button class="delete">Delete</button>')
       );
       return this;
     },

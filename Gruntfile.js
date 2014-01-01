@@ -31,29 +31,18 @@ module.exports = function(grunt) {
         src: [serverSpec]
       }
     },
-    express: {
+    nodemon: {
+      dev: {}
+    },
+    concurrent: {
+      all: {
+        tasks: ['nodemon', 'watch']
+      },
       options: {
-      },
-      dev: {
-        options: {
-          script: 'server/app.js'
-        }
-      },
-      prod: {
-        options: {
-          script: 'server/app.js',
-          node_env: 'production'
-        }
+        logConcurrentOutput: true
       }
     },
     watch: {
-      express: {
-        files:  [clientsSrcPath, serverSrcPath],
-        tasks:  ['express:dev'],
-        options: {
-          nospawn: true
-        }
-      },
       src: {
         files: ['Gruntfile.js', clientsSrcPath, serverSrcPath, serverSpec, clientSpec],
         tasks: ['default']

@@ -1,6 +1,6 @@
-var request = require('supertest'),
+var app = require('../../app'),
+    request = require('supertest').agent(app.listen(3001)),
     should = require('chai').should(),
-    app = require('../../app'),
     User = require('../../models/user');
 
 var clearData = function(done) {
@@ -20,7 +20,7 @@ describe('/users', function(){
   describe('POST', function(){
 
     it('201が返却されること', function(done){
-      request(app)
+      request
         .post('/users')
         .send({ name: 'pochi', email: 'hoge@example.com', password: 'credential' })
         .expect(201)
@@ -35,7 +35,7 @@ describe('/users', function(){
     });
 
     it('不正なContentTypeを指定した場合400が返却されること', function(done){
-      request(app)
+      request
         .post('/users')
         .send('{ name: "pochi", email: "hoge@example.com", password: "credential" }')
         .set('Content-Type', 'application/text')
@@ -47,7 +47,7 @@ describe('/users', function(){
     });
 
     it('登録済みのnameを指定した場合409が返却されること', function(done){
-      request(app)
+      request
         .post('/users')
         .send({ name: 'pochi', email: 'hoge@example.com', password: 'credential' })
         .expect(201)
@@ -55,7 +55,7 @@ describe('/users', function(){
           if (err) throw err;
           
           // 同一nameで登録
-          request(app)
+          request
             .post('/users')
             .send({ name: 'pochi', email: 'fuga@example.com', password: 'credential' })
             .expect(409)
@@ -67,7 +67,7 @@ describe('/users', function(){
     });
 
     it('登録済みのemailを指定した場合409が返却されること', function(done){
-      request(app)
+      request
         .post('/users')
         .send({ name: 'tama', email: 'hoge@example.com', password: 'credential' })
         .expect(201)
@@ -75,7 +75,7 @@ describe('/users', function(){
           if (err) throw err;
           
           // 同一emailで登録
-          request(app)
+          request
             .post('/users')
             .send({ name: 'tamya', email: 'hoge@example.com', password: 'credential' })
             .expect(409)
@@ -87,7 +87,7 @@ describe('/users', function(){
     });
 
     it('nameを省略した場合400が返却されること', function(done){
-      request(app)
+      request
         .post('/users')
         .send({ email: "hoge@example.com", password: "credential" })
         .expect(400)
@@ -98,7 +98,7 @@ describe('/users', function(){
     });
 
     it('nameに空文字を指定した場合400が返却されること', function(done){
-      request(app)
+      request
         .post('/users')
         .send({ name: "", email: "hoge@example.com", password: "credential" })
         .expect(400)
@@ -109,7 +109,7 @@ describe('/users', function(){
     });
 
     it('nameにnullを指定した場合400が返却されること', function(done){
-      request(app)
+      request
         .post('/users')
         .send({ name: null, email: 'hoge@example.com', password: 'credential' })
         .expect(400)
@@ -120,7 +120,7 @@ describe('/users', function(){
     });
 
     it('emailを省略した場合400が返却されること', function(done){
-      request(app)
+      request
         .post('/users')
         .send({ name: "hoge", password: "credential" })
         .expect(400)
@@ -131,7 +131,7 @@ describe('/users', function(){
     });
 
     it('emailに空文字を指定した場合400が返却されること', function(done){
-      request(app)
+      request
         .post('/users')
         .send({ name: "hoge", email: "", password: "credential" })
         .expect(400)
@@ -142,7 +142,7 @@ describe('/users', function(){
     });
 
     it('emailにnullを指定した場合400が返却されること', function(done){
-      request(app)
+      request
         .post('/users')
         .send({ name: 'hoge', email: null, password: 'credential' })
         .expect(400)

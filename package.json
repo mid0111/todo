@@ -2,10 +2,10 @@
   "name": "todo",
   "version": "0.0.1",
   "description": "sample app to study Backborn and Grunt.",
-  "main": "Gruntfile.js",
+  "main": "server/app.js",
   "scripts": {
     "test": "grunt",
-    "start": "node app.js"
+    "start": "node server/app.js"
   },
   "repository": {
     "type": "git",
@@ -34,6 +34,8 @@
     "grunt-express-server": "~0.4.4",
     "chai": "~1.8.1",
     "chai-jquery": "~1.1.2",
-    "grunt-mocha-phantomjs": "~0.3.2"
+    "grunt-mocha-phantomjs": "~0.3.2",
+    "grunt-nodemon": "~0.1.2",
+    "grunt-concurrent": "~0.4.2"
   }
 }
