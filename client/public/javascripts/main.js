@@ -20,7 +20,7 @@ define(function(require) {
     },
 
     renderOne: function(todo) {
-      var view = new TodoView({model: todo});
+      var view = new TodoView({model: todo, parent: this});
       this.$('#list').append(view.render().el);
     },
     

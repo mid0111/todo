@@ -17,7 +17,9 @@ define(function(require) {
       'keypress input': 'keyPress'
     },
 
-    initialize: function() {
+    initialize: function(options) {
+      this.parent = options.parent;
+      this.parent.bind('removeediting', this.removeEditing, this);
       this.model.bind('change', this.render, this);
       this.model.bind('destroy', this.remove, this);
     },
@@ -35,7 +37,12 @@ define(function(require) {
 
     editing: function(e) {
       e.preventDefault();
+      this.parent.trigger('removeediting');
       this.$el.addClass('editing');
+    },
+
+    removeEditing: function() {
+      this.$el.removeClass('editing');
     },
 
     keyPress: function(e) {
