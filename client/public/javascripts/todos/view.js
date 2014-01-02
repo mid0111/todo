@@ -2,7 +2,7 @@ define(function(require) {
   var $ = require('jquery');
   var _ = require('underscore');
   var Backbone = require('backbone');
-  var template = require('text!app/todos/itemtemplate.html')
+  var template = require('text!app/todos/itemtemplate.html');
 
 
   // View
