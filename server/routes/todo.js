@@ -8,17 +8,17 @@ exports.create = function(req, res) {
   var todo = new Todo();
   todo.title = req.body.title;
   todo.save(function(err) {
-    if(err) {
-      res.send(500, err);
-    } else {
-      res.send(201);
-    }
+    todo.save(function(err, todo) {
+      if(err) {
+        return next(err);
+      }
+      res.send(201, todo);
+    });
   });
 
 };
 
 exports.index = function(req, res) {
-
   Todo.find('', function(err, docs) {
     if(err) {
       console.log('err!!' + err);
@@ -28,17 +28,12 @@ exports.index = function(req, res) {
 };
 
 exports.update = function(req, res, next) {
-  Todo.findById(req.params.todo, function(err, todo) {
+  var id = req.params.todo;
+  Todo.update({_id: id}, {title: req.body.title}, function(err) {
     if(err) {
       return next(err);
     }
-    todo.title = req.body.title;
-    todo.save(function(err, todo) {
-      if(err) {
-        return next(err);
-      }
-      res.send(todo);
-    });
+    res.send(204);
   });
 };
 

@@ -12,13 +12,13 @@ requirejs.config({
       exports: 'Backbone'
     }
   },
-  
+
   paths: {
     'jquery':        'jquery/jquery',
     'underscore':    'underscore/underscore',
     'backbone':      'backbone/backbone',
     'text':          'requirejs-text/text',
-    'app': '../javascripts'
+    'app':           '../javascripts'
   }
 });
 
