@@ -6,3 +6,33 @@ body {
 a {
   color: #00B7FF;
 }
+
+ul, li {
+  list-style: none;
+}
+
+#list {
+  width: 262px;
+  padding: 0;
+}
+
+.todo-item {
+  border-bottom: 1px dashed #808080;
+}
+
+.todo-item input {
+  display: none;
+}
+
+.todo-item.editing input {
+  display: inline;
+}
+
+.todo-item.editing label {
+  display: none;
+}
+
+.todo-item .title-container {
+  display: inline-block;
+  width: 200px;
+}

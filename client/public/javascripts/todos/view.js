@@ -12,7 +12,9 @@ define(function(require) {
     className: 'todo-item',
 
     events: {
-      'click button.delete': 'clear'
+      'click button.delete': 'clear',
+      'dblclick .title': 'editing',
+      'keypress input': 'keyPress'
     },
 
     initialize: function() {
@@ -22,10 +24,6 @@ define(function(require) {
 
     render: function() {
       this.$el.html(this.template(this.model.toJSON()));
-      // $(this.el).html(
-      //   $('<label class="title">').text(this.model.get('title'))
-      //     .append('<button class="delete">Delete</button>')
-      // );
       return this;
     },
 
@@ -33,7 +31,21 @@ define(function(require) {
 
     clear: function() {
       this.model.destroy();
+    },
+
+    editing: function(e) {
+      e.preventDefault();
+      this.$el.addClass('editing');
+    },
+
+    keyPress: function(e) {
+      if(e.keyCode === 13) {
+        e.preventDefault();
+        this.$el.removeClass('editing');
+        this.model.save({title: this.$('input').val()});
+      }
     }
+
   });
 
 });

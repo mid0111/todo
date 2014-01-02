@@ -27,6 +27,21 @@ exports.index = function(req, res) {
   });
 };
 
+exports.update = function(req, res, next) {
+  Todo.findById(req.params.todo, function(err, todo) {
+    if(err) {
+      return next(err);
+    }
+    todo.title = req.body.title;
+    todo.save(function(err, todo) {
+      if(err) {
+        return next(err);
+      }
+      res.send(todo);
+    });
+  });
+};
+
 exports.destroy = function(req, res) {
   var id = req.params.todo;
 
