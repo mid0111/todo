@@ -13,7 +13,7 @@ define(function(require) {
 
     events: {
       'click button.delete': 'clear',
-      'dblclick .title': 'editing',
+      'click .title-container': 'editing',
       'keypress input': 'keyPress'
     },
 
@@ -39,6 +39,7 @@ define(function(require) {
       e.preventDefault();
       this.parent.trigger('removeediting');
       this.$el.addClass('editing');
+      this.$('input').focus();
     },
 
     removeEditing: function() {
